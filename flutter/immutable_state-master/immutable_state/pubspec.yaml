@@ -1,0 +1,9 @@
+name: immutable_state
+description: "🎯 A lightweight framework for stateless UI in Dart and Flutter, and an alternative to Redux."
+version: 1.0.0
+author: Tobechukwu Osakwe <thosakwe@gmail.com>
+homepage: https://github.com/thosakwe/immutable_state
+environment:
+  sdk: ">=1.8.0 <3.0.0"
+dev_dependencies:
+  test: ^0.12.0
