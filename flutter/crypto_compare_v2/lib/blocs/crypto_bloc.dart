@@ -10,7 +10,7 @@ import 'dart:collection';
 
 class CryptoBloc {
   String url =
-      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD,GBP";
+      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD";
   Stream<List<Coin>> get coins => _coinSubject.stream;
   final _coinSubject = BehaviorSubject<UnmodifiableListView<Coin>>();
   var _coinsToShow = <Coin>[];

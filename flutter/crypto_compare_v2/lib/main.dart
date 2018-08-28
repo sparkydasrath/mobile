@@ -2,10 +2,12 @@ import 'dart:collection';
 import 'package:crypto_compare_v2/blocs/crypto_bloc.dart';
 import 'package:crypto_compare_v2/model/coin.dart';
 import 'package:crypto_compare_v2/model/currency.dart';
+import 'package:crypto_compare_v2/model/logos.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   final cryptoBloc = CryptoBloc();
+  Logos(); // force intit logos to populate assets
   runApp(new MyApp(cryptoBloc));
 }
 
@@ -17,9 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Crypto Compare',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: new CryptoLandingPage(
         title: 'Crypto Compare',
         cryptoBlock: this.cryptoBloc,
@@ -59,9 +59,19 @@ class _CryptoLandingPageState extends State<CryptoLandingPage> {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: ExpansionTile(
-        title: Text(
-          coin.coin,
-          style: Theme.of(context).textTheme.title,
+        title: Row(
+          children: <Widget>[
+            SizedBox(
+              height: 40.0,
+              child: Image.asset(Logos.getAssetPathFromKey(coin.coin)),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                coin.coin,
+              ),
+            ),
+          ],
         ),
         children: <Widget>[
           ListView(

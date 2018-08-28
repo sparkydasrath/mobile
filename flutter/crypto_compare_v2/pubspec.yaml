@@ -15,3 +15,16 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/bch.png
+    - assets/btc.png
+    - assets/bch.png
+    - assets/btc.png
+    - assets/dash.png
+    - assets/eos.png
+    - assets/etc.png
+    - assets/eth.png
+    - assets/ltc.png
+    - assets/neo.png
+    - assets/xrp.png
+    - assets/zec.png
