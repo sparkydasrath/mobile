@@ -1,0 +1,17 @@
+name: crypto_compare_v2
+description: A new Flutter project.
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  rxdart: ^0.18.1
+  cupertino_icons: ^0.1.2
+ 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
