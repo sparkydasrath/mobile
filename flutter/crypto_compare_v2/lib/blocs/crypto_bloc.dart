@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:crypto_compare_v2/model/coin.dart';
 import 'package:crypto_compare_v2/model/common_fields.dart';
 import 'package:crypto_compare_v2/model/currency.dart';
@@ -7,8 +6,21 @@ import 'package:rxdart/rxdart.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
+import 'dart:collection';
 
 class CryptoBloc {
+  String url =
+      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD,GBP";
+  Stream<List<Coin>> get coins => _coinSubject.stream;
+  final _coinSubject = BehaviorSubject<UnmodifiableListView<Coin>>();
+  var _coinsToShow = <Coin>[];
+
+  CryptoBloc() {
+    this._updateCoins().then((_) {
+      _coinSubject.add(UnmodifiableListView(_coinsToShow));
+    });
+  }
+
   Future<Map<String, Object>> getFullDislaySymbols(String url) async {
     http.Response response = await http.get(url);
 
@@ -36,10 +48,13 @@ class CryptoBloc {
       _currencies = _extractCurrencies(c, displayObject[c]);
       Coin coin = Coin(c, _currencies);
       _coins.add(coin);
-      coin.printCoin();
     });
-
     return _coins;
+  }
+
+  Future<Null> _updateCoins() async {
+    Map<String, Object> displaySymbols = await getFullDislaySymbols(this.url);
+    _coinsToShow = getCoinsFromDisplaySymbols(displaySymbols);
   }
 
   List<Currency> _extractCurrencies(
