@@ -11,6 +11,10 @@ void main() {
   runApp(new MyApp(cryptoBloc));
 }
 
+const double rowPadding = 8.0;
+const double volTitleSectionPadding = 10.0;
+const double volColumnPadding = 6.0;
+
 class MyApp extends StatelessWidget {
   final CryptoBloc cryptoBloc;
   MyApp(this.cryptoBloc);
@@ -49,45 +53,170 @@ class _CryptoLandingPageState extends State<CryptoLandingPage> {
         stream: widget.cryptoBlock.coins,
         initialData: UnmodifiableListView<Coin>([]),
         builder: (context, snapshot) => ListView(
-              children: snapshot.data.map(_buildCoin).toList(),
+              children: snapshot.data.map(_buildCoinContainer).toList(),
             ),
       ),
     );
   }
 
-  Widget _buildCoin(Coin coin) {
+  Widget _buildCoinContainer(Coin coin) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: ExpansionTile(
-        title: Row(
-          children: <Widget>[
-            SizedBox(
-              height: 40.0,
-              child: Image.asset(Logos.getAssetPathFromKey(coin.coin)),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                coin.coin,
-              ),
-            ),
-          ],
-        ),
+        padding: const EdgeInsets.all(2.0), child: _buildCoinExpander(coin));
+  }
+
+  Widget _buildCoinExpander(Coin coin) {
+    return ExpansionTile(
+      title: Row(
         children: <Widget>[
-          ListView(
-            children: coin.currencies.map(_buildCurrency).toList(),
-            shrinkWrap: true,
+          SizedBox(
+            height: 40.0,
+            child: Image.asset(Logos.getAssetPathFromKey(coin.coin)),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              coin.coin,
+              style: TextStyle(fontSize: 40.0),
+            ),
           ),
         ],
       ),
+      children: <Widget>[
+        ListView(
+          children: coin.currencies.map(_buildCurrency).toList(),
+          shrinkWrap: true,
+        ),
+      ],
     );
   }
 
   Widget _buildCurrency(Currency c) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[Text(c.currency), Text(c.commonFields.price)],
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: rowPadding),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            _buildPriceRow(c),
+            Divider(),
+            _buildDayAnd24HrSection(c),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: _buildVolumeSection(c),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPriceRow(Currency c) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Text(
+          c.commonFields.price,
+          style: Theme.of(context).textTheme.display1,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Icon(
+              Icons.arrow_drop_up,
+              color: Colors.red,
+              size: 40.0,
+            ),
+            Text(
+              c.commonFields.changePct24Hour + " %",
+              style: TextStyle(fontSize: 20.0),
+            )
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget _buildDayAnd24HrSection(Currency c) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(""),
+            Text("DAY"),
+            Text("24 HR"),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Text("OPEN"),
+            Text(c.commonFields.openDay),
+            Text(c.commonFields.open24Hour),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Text("LOW"),
+            Text(c.commonFields.lowDay),
+            Text(c.commonFields.low24Hour),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Text("HIGH"),
+            Text(c.commonFields.highDay),
+            Text(c.commonFields.high24Hour),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildVolumeSection(Currency c) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
+          Text("VOLUME"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text("DAY"),
+                  Text(c.commonFields.volumeDay),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text("LAST"),
+                  Text(c.commonFields.lastVolume),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text("24 HR"),
+                  Text(c.commonFields.volume24Hour),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Text("TOTAL 24 HR"),
+                  Text(c.commonFields.totalVolume24Hour),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

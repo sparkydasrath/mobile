@@ -1,8 +1,8 @@
-import 'package:crypto_compare_v2/model/common_fields.dart';
+import 'package:crypto_compare_v2/model/common_display_fields.dart';
 
 class Currency {
   final String currency;
-  final CommonFields commonFields;
+  final CommonDisplayFields commonFields;
   final String coin;
   Currency(this.coin, this.currency, this.commonFields);
 

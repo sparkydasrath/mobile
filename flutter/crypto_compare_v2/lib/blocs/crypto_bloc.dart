@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:crypto_compare_v2/model/coin.dart';
-import 'package:crypto_compare_v2/model/common_fields.dart';
+import 'package:crypto_compare_v2/model/common_display_fields.dart';
 import 'package:crypto_compare_v2/model/currency.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:http/http.dart' as http;
@@ -63,7 +63,7 @@ class CryptoBloc {
     Iterable<String> currencyKeys = currencyObject.keys;
 
     currencyKeys.forEach((c) {
-      CommonFields cf = CommonFields(currencyObject[c]);
+      CommonDisplayFields cf = CommonDisplayFields(currencyObject[c]);
       Currency curr = Currency(coin, c, cf);
       currencies.add(curr);
     });
