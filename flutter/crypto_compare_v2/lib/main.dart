@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Crypto Compare',
+      title: 'Crypto Snapshot',
       theme: ThemeData.dark(),
       home: new CryptoLandingPage(
-        title: 'Crypto Compare',
+        title: 'Crypto Snapshot',
         cryptoBlock: this.cryptoBloc,
       ),
     );
@@ -49,12 +49,15 @@ class _CryptoLandingPageState extends State<CryptoLandingPage> {
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: StreamBuilder<UnmodifiableListView<Coin>>(
-        stream: widget.cryptoBlock.coins,
-        initialData: UnmodifiableListView<Coin>([]),
-        builder: (context, snapshot) => ListView(
-              children: snapshot.data.map(_buildCoinContainer).toList(),
-            ),
+      body: RefreshIndicator(
+        onRefresh: widget.cryptoBlock.refresh,
+        child: StreamBuilder<UnmodifiableListView<Coin>>(
+          stream: widget.cryptoBlock.coins,
+          initialData: UnmodifiableListView<Coin>([]),
+          builder: (context, snapshot) => ListView(
+                children: snapshot.data.map(_buildCoinContainer).toList(),
+              ),
+        ),
       ),
     );
   }
@@ -83,6 +86,7 @@ class _CryptoLandingPageState extends State<CryptoLandingPage> {
       ),
       children: <Widget>[
         ListView(
+          physics: ClampingScrollPhysics(),
           children: coin.currencies.map(_buildCurrency).toList(),
           shrinkWrap: true,
         ),
@@ -91,7 +95,8 @@ class _CryptoLandingPageState extends State<CryptoLandingPage> {
   }
 
   Widget _buildCurrency(Currency c) {
-    return Container(
+    return Card(
+      elevation: 1.0,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: rowPadding),
         child: Column(
