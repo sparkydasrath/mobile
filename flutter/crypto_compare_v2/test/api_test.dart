@@ -1,11 +1,8 @@
 import 'package:crypto_compare_v2/blocs/crypto_bloc.dart';
 import 'package:crypto_compare_v2/model/coin.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:crypto_compare_v2/main.dart';
-import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'dart:io';
 
 void main() {
   test("Hitting the CryptoCompare api should return data", () async {
