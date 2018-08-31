@@ -1,5 +1,4 @@
 # Crypto Snapshot
-(Renamed from Crypto Compare)
 
 This next iteration contains much nore info than the previous, which only had a single currency/price pair. The coins and currencies requested are still hard coded to fixed set (https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,EOS,BCH,XRP,LTC,ETC&tsyms=USD,EUR,GBP,JPY");
 
@@ -12,6 +11,26 @@ There are several improvements that can be made:
 6. Change layout when in landscape mode
 7. Add some more color 
 
+**Running**
 
+Unfortunately I did not build an executable that you can install on your device. You can look at the screenshots for reference but if you really want to run it, I will assume you have an environment ready to do that. If not, then you can use the [flutter guide](https://flutter.io/get-started/install/) to get set up
 
-[Trello Board](https://trello.com/b/izp7FogS)
+Assuming you have the right tools involved and the **Android** emulator set up correctly
+1. Fire up the Android emulator (Visual Studio: Tools > Android > Android Device Manager) or Android Studio (Tools > AVD Manager)
+2. In VS Code make sure the eumlator is showing up in the taskbar (bottom right)
+3. Hit F5 and it should build and send it to the emulator
+
+**Screenshots**
+
+Landing Page
+!(https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png)
+
+Coin Details with list of currencies
+!(https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png)
+
+Pull to refresh
+!(https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png)
+
+**Tasks**
+
+Tasks are tracked on [Trello Board](https://trello.com/b/izp7FogS)
