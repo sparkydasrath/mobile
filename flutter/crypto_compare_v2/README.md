@@ -28,11 +28,11 @@ Landing Page
 
 Coin Details with list of currencies
 
-![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png "Coin Details with list of currencies")
+![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs02.png "Coin Details with list of currencies")
 
 Pull to refresh
 
-![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png "Pull to refresh")
+![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs03.png "Pull to refresh")
 
 **Tasks**
 
