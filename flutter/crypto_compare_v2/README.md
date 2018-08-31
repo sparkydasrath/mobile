@@ -23,12 +23,15 @@ Assuming you have the right tools involved and the **Android** emulator set up c
 **Screenshots**
 
 Landing Page
+
 ![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png "Landing Page")
 
 Coin Details with list of currencies
+
 ![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png "Coin Details with list of currencies")
 
 Pull to refresh
+
 ![alt text](https://github.com/sparkydasrath/media/blob/master/mobile/flutter/cryptoSnapshot/cs01.png "Pull to refresh")
 
 **Tasks**
