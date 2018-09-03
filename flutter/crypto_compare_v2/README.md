@@ -1,4 +1,4 @@
-# Crypto Snapshot
+# Crypto Compare
 
 This next iteration contains much nore info than the previous, which only had a single currency/price pair. The coins and currencies requested are still hard coded to fixed set (https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,EOS,BCH,XRP,LTC,ETC&tsyms=USD,EUR,GBP,JPY");
 
@@ -36,4 +36,4 @@ Pull to refresh
 
 **Tasks**
 
-Tasks are tracked on [Trello Board](https://trello.com/b/izp7FogS)
+[Trello Board](https://trello.com/b/izp7FogS)
